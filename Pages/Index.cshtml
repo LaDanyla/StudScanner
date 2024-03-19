@@ -1,0 +1,57 @@
+﻿@page
+@model IndexModel
+@{
+	ViewData["Title"] = "Home page";
+}
+<!-- Welcome page -->
+<section id="welcome-page">
+	<div id="greet-container">
+		<span id="greet1">Вітаємо</span>
+		<span id="greet2">на</span>
+		<span id="greet3">сторінці</span>
+		<span id="greet4">авторизації</span>
+	</div>
+	<div style="display: none" id="choosing-container">
+		<span id="choosing-inscription">Виберіть спосіб<br>авторизації</span>
+		<div id="choosing-content">
+			<button onclick="takePictureWay()" id="take-picture-button"> <img id="take-picture-img" src="/images/studak.gif"/> </button>
+			<span onclick="takePictureWay()" id="take-picture-inscription"><u>Зробити</u> фотографію свого студентського</span>
+			<span onclick="screenshotWay()" id="screenshot-inscription"><u>Зaвантажити</u> скриншот із застосунку &ldquo;Дія&rdquo;</span>
+			<button onclick="screenshotWay()" id="screenshot-button"> <img id="screenshot-img" src="/images/DIYAscreenshot.jpg"> </button>
+		</div>
+	</div>
+	<button onclick="dropdownAction()" id="dropdown-button"> <img id="dropdown-img" src="/images/seta_baixo.gif"> </button>
+</section>
+
+<header style="display: none">
+	<span id="header-text">
+		Сторінка<br>авторизації
+	</span>
+</header>
+<section id='starting-content'>
+	<div style="display: none" id="ticket-container">
+		<img id="ticket" src="https://upload.wikimedia.org/wikipedia/uk/5/5f/Reg8564_img_014.gif">
+	</div>
+	<button style="display: none" onclick="turnCameraOn()" id="starting-button">Режим камери</button>
+</section>
+
+
+
+<script>
+	function startAnimation() {
+		let greetContainer = document.getElementById("greet-container");
+		let chooseContainer = document.getElementById("choosing-container");
+
+		setTimeout(() => {
+			greetContainer.style.animation = "fading 1s ease-out";
+		}, 5000);
+		setTimeout(() => {
+			greetContainer.style.display = "none";
+			chooseContainer.style.display = "block";
+			chooseContainer.style.animation = "appearing 1s ease-out";
+		}, 6000);
+
+	}
+	startAnimation();
+</script>
+

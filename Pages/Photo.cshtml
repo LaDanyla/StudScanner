@@ -1,0 +1,63 @@
+﻿@page
+@model PhotoModel
+@{
+	ViewData["Title"] = "Home page";
+}
+
+<section style="position: fixed; transform: translateY(-100%)" id="welcome-page">
+	<div id="sub-dropdown-relative-container">
+		<button onclick="collapse()" id="return-from-dropdown-btn"><img id="return-from-dropdown-img" src="/images/return.png"></button>
+		<div id="choosing-container">
+			<span id="choosing-inscription">Виберіть спосіб<br>авторизації</span>
+			<div id="choosing-content">
+				<button onclick="takePictureWay()" id="take-picture-button"> <img id="take-picture-img" src="/images/studak.gif" /> </button>
+				<span onclick="takePictureWay()" id="take-picture-inscription"><u>Зробити</u> фотографію свого студентського</span>
+				<span onclick="screenshotWay()" id="screenshot-inscription"><u>Зaвантажити</u> скриншот із застосунку &ldquo;Дія&rdquo;</span>
+				<button onclick="screenshotWay()" id="screenshot-button"> <img id="screenshot-img" src="/images/DIYAscreenshot.jpg"> </button>
+			</div>
+		</div>
+
+	</div>
+	<button onclick="dropdownAction()" id="dropdown-button"> <img id="dropdown-img" src="/images/seta_baixo.gif"> </button>
+</section>
+
+
+<header>
+	<span id="header-text">
+		Сторінка<br>авторизації
+	</span>
+</header>
+<section id='starting-content'>
+	<div id="ticket-container">
+		<img id="ticket" src="https://upload.wikimedia.org/wikipedia/uk/5/5f/Reg8564_img_014.gif">
+	</div>
+
+	<button onclick="turnCameraOn()" id="starting-button">Режим камери</button>
+
+	<!-- Phase 2 -->
+	<div id="video-container">
+		<video autoplay id='video'></video>
+	</div>
+
+	<div id="pattern-outer-container">
+		<div id="pattern-inner-container">
+			<div id="light-container">
+				<button onclick="Light()" class="photo-btns" id="light-button"> <img id="light-img" src="/images/flash.svg"> </button>
+			</div>
+			<div id="pattern-centerer"> <img id="pattern-img" src="/images/pattern.svg"> </div>
+		</div>
+	</div>
+</section>
+
+<div id="photo-container">
+	<button onclick="retry()" class="action small-button" id="retry-button" disabled> <img class="small-img" id="retry-img" src="/images/retry.svg"> </button>
+	<button onclick="takePicture()" class="action big-button" id="snap-button"> <img class="big-img" id="snap-img" src="/images/snap.svg"> </button>
+	<button onclick="goForward(this)" class="action small-button" id="ready-button" disabled> <img class="small-img" id="ready-img" src="/images/ready.svg"> </button>
+</div>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		collapse();
+	});
+</script>
+

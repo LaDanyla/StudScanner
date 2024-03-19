@@ -1,0 +1,66 @@
+﻿@page
+@model ScreenModel
+@{
+}
+<section style="position: fixed; transform: translateY(-100%)" id="welcome-page">
+	<div id="sub-dropdown-relative-container">
+		<button onclick="collapse()" id="return-from-dropdown-btn"><img id="return-from-dropdown-img" src="/images/return.png"></button>
+		<div id="choosing-container">
+			<span id="choosing-inscription">Виберіть спосіб<br>авторизації</span>
+			<div id="choosing-content">
+				<button onclick="takePictureWay()" id="take-picture-button"> <img id="take-picture-img" src="/images/studak.gif" /> </button>
+				<span onclick="takePictureWay()" id="take-picture-inscription"><u>Зробити</u> фотографію свого студентського</span>
+				<span onclick="screenshotWay()" id="screenshot-inscription"><u>Зaвантажити</u> скриншот із застосунку &ldquo;Дія&rdquo;</span>
+				<button onclick="screenshotWay()" id="screenshot-button"> <img id="screenshot-img" src="/images/DIYAscreenshot.jpg"> </button>
+			</div>
+		</div>
+
+	</div>
+	<button onclick="dropdownAction()" id="dropdown-button"> <img id="dropdown-img" src="/images/seta_baixo.gif"> </button>
+</section>
+
+
+<header>
+	<span id="header-text">
+		Сторінка<br>авторизації
+	</span>
+</header>
+<section id='starting-content'>
+	<div id="carousel-container">
+		<div class="carousel-button" id="backward-button" onclick="backward()">
+			<div class="arrow" style="border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-right: 10px solid #333;"></div>
+		</div>
+		<div class="diya-container">
+			<img class="diya zero" id="img1" src="/images/DIYA1.jpg">
+			<img class="diya zero" id="img2" src="/images/DIYA2.jpg">
+			<img class="diya zero" id="img3" src="/images/DIYA3.jpg">
+			<img class="diya" id="selected-photo" src="">
+		</div>
+		<div class="carousel-button" id="forward-button" onclick="forward()">
+			<div class="arrow" style="border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 10px solid #333;"></div>
+		</div>
+	</div>
+
+	<input type="file" id="photo-input" style="display:none" onchange="loadPhoto(event)" />
+	<button style="font-size: 3vh;" id="starting-button" onclick="choosePhoto()">Завантажити фото</button>
+</section>
+
+
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const diyaContainer = document.querySelector('.diya-container');
+		const backwardButton = document.getElementById('backward-button');
+		const forwardButton = document.getElementById('forward-button');
+
+		backwardButton.style.height = `${diyaContainer.offsetHeight}px`;
+		forwardButton.style.height = `${diyaContainer.offsetHeight}px`;
+
+		let welcomePage = document.getElementById("welcome-page");
+
+		welcomePage.style.animation = "bigUp 2s ease-out";
+		setTimeout(() => {
+			welcomePage.style.transform = "translateY(-100%)";
+		}, 980);
+	});
+</script>

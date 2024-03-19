@@ -1,0 +1,148 @@
+﻿@page
+@model PhotoFormModel
+@{
+}
+
+<section style="position: fixed; transform: translateY(-100%)" id="welcome-page">
+	<div id="sub-dropdown-relative-container">
+		<button onclick="collapse()" id="return-from-dropdown-btn"><img id="return-from-dropdown-img" src="/images/return.png"></button>
+		<div id="choosing-container">
+			<span id="choosing-inscription">Виберіть спосіб<br>авторизації</span>
+			<div id="choosing-content">
+				<button onclick="takePictureWay()" id="take-picture-button"> <img id="take-picture-img" src="/images/studak.gif" /> </button>
+				<span onclick="takePictureWay()" id="take-picture-inscription"><u>Зробити</u> фотографію свого студентського</span>
+				<span onclick="screenshotWay()" id="screenshot-inscription"><u>Зaвантажити</u> скриншот із застосунку &ldquo;Дія&rdquo;</span>
+				<button onclick="screenshotWay()" id="screenshot-button"> <img id="screenshot-img" src="/images/DIYAscreenshot.jpg"> </button>
+			</div>
+		</div>
+
+	</div>
+	<button onclick="dropdownAction()" id="dropdown-button"> <img id="dropdown-img" src="/images/seta_baixo.gif"> </button>
+</section>
+
+<header>
+	<span id="header-text">
+		Сторінка<br>авторизації
+	</span>
+</header>
+<section id='starting-content'>
+	<div id="form">
+		<section id="text-block">
+			<div>
+				<span class="about-field">Назва закладу</span>
+				<textarea class="display-areas" rows="2" id="info1" disabled>@Model.ScannedText[0]</textarea>
+				<button onclick="edit(this)" id="e1" class="edit" data-editing="false">
+					<img src="/images/pencil.svg">
+				</button>
+				<textarea class="edit-areas" rows="2" id="textBox1"></textarea>
+				<button onclick="confirmEditing(this)" id="c1" class="confirm-editing">
+					<img src="/images/check.svg">
+				</button>
+			</div>
+			<div>
+				<span class="about-field">Номер квитка (цифри)</span>
+				<textarea class="display-areas" rows="2" id="info2" disabled>@Model.ScannedText[1]</textarea>
+				<button onclick="edit(this)" id="e2" class="edit" data-editing="false">
+					<img src="/images/pencil.svg">
+				</button>
+				<textarea class="edit-areas" rows="2" id="textBox2"></textarea>
+				<button onclick="confirmEditing(this)" id="c2" class="confirm-editing">
+					<img src="/images/check.svg">
+				</button>
+			</div>
+			<div>
+				<span class="about-field">ПІБ</span>
+				<textarea class="display-areas" rows="2" id="info3" disabled>@Model.ScannedText[2]</textarea>
+				<button onclick="edit(this)" id="e3" class="edit" data-editing="false">
+					<img src="/images/pencil.svg">
+				</button>
+				<textarea class="edit-areas" rows="2" id="textBox3"></textarea>
+				<button onclick="confirmEditing(this)" id="c3" class="confirm-editing">
+					<img src="/images/check.svg">
+				</button>
+			</div>
+			<div>
+				<span class="about-field">Факультет, форма навчання</span>
+				<textarea class="display-areas" rows="2" id="info4" disabled>@Model.ScannedText[3]</textarea>
+				<button onclick="edit(this)" id="e4" class="edit" data-editing="false">
+					<img src="/images/pencil.svg">
+				</button>
+				<textarea class="edit-areas" rows="2" id="textBox4"></textarea>
+				<button onclick="confirmEditing(this)" id="c4" class="confirm-editing">
+					<img src="/images/check.svg">
+				</button>
+			</div>
+			<div>
+				<span class="about-field">Група (специальність-рік)</span>
+				<textarea class="display-areas" rows="2" id="info5" disabled>@Model.ScannedText[4]</textarea>
+				<button onclick="edit(this)" id="e5" class="edit" data-editing="false">
+					<img src="/images/pencil.svg">
+				</button>
+				<textarea class="edit-areas" rows="2" id="textBox5"></textarea>
+				<button onclick="confirmEditing(this)" id="c5" class="confirm-editing">
+					<img src="/images/check.svg">
+				</button>
+			</div>
+		</section>
+	</div>
+	<button onclick="openPopup()" id="confirm-data">Підтвердити</button>
+	<button onclick="remakePicture()" id="remake-picture">Перефотографувати</button>
+
+</section>
+
+<section id='starting-content'>
+	<div id="video-container">
+		<video autoplay id='video'></video>
+	</div>
+
+	<div id="pattern-outer-container">
+		<div id="pattern-inner-container">
+			<div id="light-container">
+				<button onclick="Light()" class="photo-btns" id="light-button"> <img id="light-img" src="/images/flash.svg"> </button>
+			</div>
+			<div id="pattern-centerer"> <img id="pattern-img" src="/images/pattern.svg"> </div>
+		</div>
+	</div>
+</section>
+
+<div id="photo-container">
+	<button onclick="retry()" class="action small-button" id="retry-button" disabled> <img class="small-img" id="retry-img" src="/images/retry.svg"> </button>
+	<button onclick="takePicture()" class="action big-button" id="snap-button"> <img class="big-img" id="snap-img" src="/images/snap.svg"> </button>
+	<button onclick="goForward()" class="action small-button" id="ready-button" disabled> <img class="small-img" id="ready-img" src="/images/ready.svg"> </button>
+</div>
+
+
+<div id="popup">
+	<div id="popup-text-container"><span id="popup-text">Ви впевнені, що хочете <br>завершити редагування?</span></div>
+	<div class="buttons">
+		<button id="confirm-and-send" class="popup-button" onclick="confirmAndSend()">Підтвердити</button>
+		<button id="return-to-editing" class="popup-button" onclick="closePopup()">Повернутися</button>
+	</div>
+</div>
+
+<div id="overlay" onclick="closePopup()"></div>
+
+<div id="notification">
+	<div id="notification-content">
+		<!-- JS text -->
+	</div>
+	<span id="close-button" onclick="closeNotification()">&times;</span>
+	<div id="timer-bar">
+		<div id="progress-bar"></div>
+	</div>
+</div>
+
+<script>
+		for (let i = 1; i < 6; i++) {
+			let info = document.querySelector(`#info${i}`);
+			let eElement = document.querySelector(`#e${i}`);
+			const formWidth = document.getElementById('form').clientWidth;
+			let requirableWidth = formWidth * 0.94;
+
+			info.style.width = requirableWidth + "px";
+			let startY = info.offsetTop;
+			let startX = info.offsetLeft + info.offsetWidth;
+			eElement.style.top = startY + "px";
+			eElement.style.left = startX + "px";
+		}
+</script>
